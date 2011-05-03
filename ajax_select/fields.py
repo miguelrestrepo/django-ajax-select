@@ -234,7 +234,9 @@ class AutoCompleteSelectSingleWidget(forms.widgets.Select):
 
     def value_from_datadict(self, data, files, name):
         # eg. u'members': [u'|229|4688|190|']
-        return [long(val) for val in data.get(name,'').split('|') if val]
+        datadict = data.get(name,'').split('|')
+        if datadict != ['']:
+            return [long(val) for val in datadict if val][0]
 
 class AutoCompleteSelectMultipleField(forms.fields.CharField):
 
