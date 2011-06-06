@@ -1,5 +1,5 @@
 {% load i18n %}
-<input type="text" name="{{ name }}" id="{{ html_id }}" value="{{ current_name }}" {{ extra_attrs }} />
+<input type="{{ type }}" name="{{ name }}" id="{{ html_id }}" value="{{ current_name }}" {{ extra_attrs }} />
 {% block help %}{# {% if help_text %}<p class="help">{{ help_text }}</p>{% endif %} #}{% endblock %}
 <script type="text/javascript">
 jQuery(document).ready(function($){{% block script %}

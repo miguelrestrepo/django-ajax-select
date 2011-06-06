@@ -271,9 +271,10 @@ class AutoCompleteWidget(forms.TextInput):
     help_text = ''
     html_id = ''
 
-    def __init__(self, channel, *args, **kwargs):
+    def __init__(self, channel, type, *args, **kwargs):
         self.channel = channel
         self.help_text = kwargs.pop('help_text', '')
+        self.type = type
 
         super(AutoCompleteWidget, self).__init__(*args, **kwargs)
 
@@ -291,7 +292,8 @@ class AutoCompleteWidget(forms.TextInput):
             'lookup_url': reverse('ajax_lookup', args=[self.channel]),
             'name': name,
             'extra_attrs':mark_safe(flatatt(final_attrs)),
-            'func_slug': self.html_id.replace("-","")
+            'func_slug': self.html_id.replace("-",""),
+            'type': self.type
         }
 
         templates = ('autocomplete_%s.html' % self.channel,
@@ -305,10 +307,10 @@ class AutoCompleteField(forms.CharField):
     """
     channel = None
 
-    def __init__(self, channel, *args, **kwargs):
+    def __init__(self, channel, type="text", *args, **kwargs):
         self.channel = channel
 
-        widget = AutoCompleteWidget(channel,help_text=kwargs.get('help_text', _('Enter text to search.')))
+        widget = AutoCompleteWidget(channel,type, help_text=kwargs.get('help_text', _('Enter text to search.')))
 
         defaults = {'max_length': 255,'widget': widget}
         defaults.update(kwargs)
