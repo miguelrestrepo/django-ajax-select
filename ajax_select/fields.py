@@ -81,7 +81,7 @@ class AutoCompleteSelectField(forms.fields.CharField):
         }
         defaults.update(kwargs)
 
-        super(AutoCompleteSelectField, self).__init__(*args, widget=widget)
+        super(AutoCompleteSelectField, self).__init__(*args, **defaults)
 
     def clean(self, value):
         if value:
