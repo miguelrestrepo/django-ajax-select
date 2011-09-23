@@ -80,8 +80,8 @@ class AutoCompleteSelectField(forms.fields.CharField):
             'widget': widget
         }
         defaults.update(kwargs)
-        queryset = defaults.pop('queryset')
-        to_field_name = defaults.pop('to_field_name')
+        queryset = defaults.pop('queryset', None)
+        to_field_name = defaults.pop('to_field_name', None)
 
         super(AutoCompleteSelectField, self).__init__(*args, **defaults)
 
