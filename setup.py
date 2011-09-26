@@ -10,7 +10,7 @@ setup(name='django-ajax-selects',
     url='http://code.google.com/p/django-ajax-selects/',
     packages=['ajax_select', ],
     include_package_data = True,    # include everything in source control
-    package_data={'ajax_select': ['*.py','*.txt','*.css','*.gif','js/*.js','templates/*.html']},
+    package_data={'ajax_select': ['*.py','*.txt','*.css','*.gif','*.png','js/*.js','templates/*.html']},
     classifiers = [
         "Programming Language :: Python",
         "Programming Language :: Python :: 2",
