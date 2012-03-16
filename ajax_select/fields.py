@@ -35,7 +35,13 @@ class AutoCompleteSelectWidget(forms.widgets.TextInput):
             try:
                 obj = objs[0]
             except IndexError:
-                raise Exception("%s cannot find object:%s" % (lookup, value))
+                #Slight modification: if the value does not exist because
+                #it was filtered out (i.e., active=0), should not err.
+                #Instead, set obj = '' and pass rather than raising an 
+                #exception:
+                obj = ''
+                pass
+                #raise Exception("%s cannot find object:%s" % (lookup, value))
             current_result = mark_safe(lookup.format_item( obj ) )
         else:
             current_result = ''
